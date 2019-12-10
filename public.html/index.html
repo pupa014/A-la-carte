@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>Login Page</title>
+</head>
+<body>
+    <form id="LoginSystem">
+        User ID:<br>
+        <input type="text" id="idUser" placeholder=" "> <br>
+        Password:<br>
+        <input type="password" id="idPassword" placeholder=" "> <br>
+        <button type="button" id="idLogin">Login</button>
+    <a href="registerPage.html">Register</a>
+</form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+        authDomain: "a-la-carte-767c1.firebaseapp.com",
+        databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+        projectId: "a-la-carte-767c1",
+        storageBucket: "a-la-carte-767c1.appspot.com",
+        messagingSenderId: "1032741693894",
+        appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+        measurementId: "G-KXG18481EL"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script>
+        document.getElementById("idLogin").onclick = function() {
+
+        var email = document.getElementById('idUser').value;
+        var password = document.getElementById('idPassword').value;
+
+        firebase.auth().signInWithEmailAndPassword(email + '@it.kmitl.ac.th', password)
+        .then(function(){
+                window.location.replace("ChoosePage.html");
+                console.log('success');
+            }).catch(function(error) {
+                alert('login fail');
+                console.log('error');
+            })
+        }
+    </script>
+</body>
+</html>
