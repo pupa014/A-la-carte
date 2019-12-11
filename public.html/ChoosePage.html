@@ -11,6 +11,34 @@
 </head>
 
 <body style="background-image: url(https://cdn.pixabay.com/photo/2017/08/04/10/37/background-2579721_960_720.jpg); background-size: cover;">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+    <script>
+         // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+        authDomain: "a-la-carte-767c1.firebaseapp.com",
+        databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+        projectId: "a-la-carte-767c1",
+        storageBucket: "a-la-carte-767c1.appspot.com",
+        messagingSenderId: "1032741693894",
+        appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+        measurementId: "G-KXG18481EL"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <script src="login.js"></script>
+    <div id='currentUser'></div>
+    <a href="index.html" onclick="logout()">Log out</a>
     <div class="container">
         <div class="row">
             <img src="pic/6.jpg" class="img-fluid" width="100%" alt="Responsive image">
@@ -49,6 +77,9 @@
 
     </div>
     <!-- contianer div -->
+    <script>
+        var current = localStorage.getItem("currentuse");
+    </script>
 </body>
 
 </html>
