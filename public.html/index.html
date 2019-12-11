@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-        <title>Login Page</title>
+<head xmlns="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
 </head>
-<body>
-    <form id="LoginSystem">
-        User ID:<br>
-        <input type="text" id="idUser" placeholder=" "> <br>
-        Password:<br>
-        <input type="password" id="idPassword" placeholder=" "> <br>
-        <button type="button" id="idLogin">Login</button>
-    <a href="registerPage.html">Register</a>
-</form>
+<body style="background-image: url(https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover;">
+    <div class="d-flex justify-content-center">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <center>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                    <form id="LoginSystem">
+                        <div class="alert alert-info" align="center">
+                            <h3>Please login</h3>
+                            User ID:<br>
+                            <input type="text" id="idUser" placeholder="รหัสนักศึกษา"> <br>
+                            Password:<br>
+                            <input type="password" id="idPassword" placeholder="รหัสผ่าน"> <br>
+                            <button type="button" id="idLogin">Login</button>
+                            <a href="registerPage.html">Register</a>
+                        </form>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
