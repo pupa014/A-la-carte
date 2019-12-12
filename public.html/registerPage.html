@@ -1,92 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register Page</title>
-</head>
-<body style="background-image: url(https://images.pexels.com/photos/142520/pexels-photo-142520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover;">
+  </head>
+  <body style="background-image: url(https://images.pexels.com/photos/142520/pexels-photo-142520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-size: cover;">
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-sm-6">
-                <center>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                    <form id="LoginSystem">
-                        <div class="alert alert-info" align="center">
-                            <h3>Register</h3>
-                            Firstname:<br>
-                            <input type="text" id="firstname" placeholder="ชื่อจริง"> <br>
-                            lastname:<br>
-                            <input type="text" id="lastname" placeholder="นามสกุล"> <br>
-                            User ID:<br>
-                            <input type="text" id="idNumber" placeholder="รหัสนักศึกษา"> <br>
-                            Password:<br>
-                            <input type="password" id="idPassword" placeholder="รหัสผ่าน"> <br>
-                            Confirm password:<br>
-                            <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่านอีกครั้ง"> <br>
-                            <button type="button" id="idRegister">Register</button>
-                            <a href="index.html">Back To Login</a>
-                </form>
+      <div class="row justify-content-md-center">
+        <div class="col-sm-6">
+          <center>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h3>Register</h3>
+              ชื่อจริง:<br>
+              <input type="text" id="name"><br>
+              นามสกุล:<br>
+              <input type="text" id="last"><br>
+              รหัสนักศึกษา:<br>
+              <input type="text" id="idNumber"><br>
+              รหัสผ่าน:<br>
+              <input type="password" id="pass"><br>
+              ยืนยันรหัสผ่าน:<br>
+              <input type="password" id="confirmPassword"><br>
+              <button onclick="register()">สมัคร</button>
+              <a href="index.html">Back To Login</a>
+            </center>
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+           https://firebase.google.com/docs/web/setup#available-libraries -->
+      <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+       <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+    </div>
+  </div>
+</div>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
-     <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
-        authDomain: "a-la-carte-767c1.firebaseapp.com",
-        databaseURL: "https://a-la-carte-767c1.firebaseio.com",
-        projectId: "a-la-carte-767c1",
-        storageBucket: "a-la-carte-767c1.appspot.com",
-        messagingSenderId: "1032741693894",
-        appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
-        measurementId: "G-KXG18481EL"
+      <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+          authDomain: "a-la-carte-767c1.firebaseapp.com",
+          databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+          projectId: "a-la-carte-767c1",
+          storageBucket: "a-la-carte-767c1.appspot.com",
+          messagingSenderId: "1032741693894",
+          appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+          measurementId: "G-KXG18481EL"
       };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
-
-    <script>
-        document.getElementById("idRegister").onclick = function() {
-
-        var firstname = document.getElementById('firstname').value;
-        var lastname = document.getElementById('lastname').value;
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      </script>
+      <script>
+      function register(){
+        var lfirstname = document.getElementById('name').value;
+        var llastname = document.getElementById('last').value;
         var student = document.getElementById('idNumber').value;
-        var password = document.getElementById('idPassword').value;
+        var lpassword = document.getElementById('pass').value;
         var confirmpassword = document.getElementById('confirmPassword').value;
 
-        if (student.length == 8 && student.slice(2, 4) == '07' && /^\d+$/.test(student) && password == confirmpassword)
+        if (student.length == 8 && student.slice(2, 4) == '07' && /^\d+$/.test(student) && lpassword == confirmpassword)
         {
-            var email = student + '@it.kmitl.ac.th'
-
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
-                var firebaseRef = firebase.database().ref('users');
-                firebaseRef.push({
-                firstname: firstname,
-                lastname: lastname,
-                email: student + '@it.kmitl.ac.th',
-                password: password
-            });
+          var lemail = student + '@it.kmitl.ac.th'
+          firebase.auth().createUserWithEmailAndPassword(lemail, lpassword).then(function(){
+            var firebaseRef = firebase.database().ref("users");
+            firebaseRef.push({
+              firstname: lfirstname,
+              lastname: llastname,
+              email: lemail,
+              password: lpassword
+        });
             console.log('insert success')
             alert('Register success! Please login with your e-mail and password')
-            window.location.replace("index.html");
-            }).catch(function(error) {
+          }).catch(function(error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 if (errorCode === 'auth/weak-password') {
@@ -97,11 +92,12 @@
                 }
                     console.log(error);
                 })
-        } else
+        console.log('success')
+        }else
         {
-            alert('Please check your information again')
+          alert('Please check your information again')
         }
-        }
-    </script>
-</body>
+}
+      </script>
+  </body>
 </html>

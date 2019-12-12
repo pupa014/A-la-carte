@@ -10,7 +10,8 @@
 <body>
   <script>
     var orderfood = sessionStorage.getItem("orderfood")
-      if (orderfood != null){
+    var currentshop = sessionStorage.getItem("currentshop")
+      if (orderfood != null && currentshop != null){
           console.log(orderfood)
       }
       else {
@@ -34,17 +35,70 @@
 
 <div class="container">
   <h2>Student's Order</h2>
-  <form>
     <div class="form-group">
       <label>อาหารที่สั่ง:</label>
         <script>document.write(orderfood)</script>
     </div>
-    <div class="form-group">
       <label>Option:</label>
-      <textarea class="form-control" rows="10" cols="20" id="idComment" placeholder="ไม่ใส่ผัก ไม่ใส่ไข่ ฯลฯ"></textarea>
-    </div>
-    <button type="submit" class="btn btn-dark" id="commentBtn">ยืนยัน</button>
-  </form>
+      <textarea class="form-control" rows="10" cols="20" id="option" placeholder="ไม่ใส่ผัก ไม่ใส่ไข่ ฯลฯ"></textarea>
+      จำนวนที่สั่ง (สูงสุด 5 รายการ ต่อ 1 ครั้ง):
+      <br><input type="number" id="plate" value="1" min="1" max="5"><br>
+    <button type="submit" class="btn btn-dark" onclick="ordersent()">ยืนยัน</button>
 </div>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+          authDomain: "a-la-carte-767c1.firebaseapp.com",
+          databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+          projectId: "a-la-carte-767c1",
+          storageBucket: "a-la-carte-767c1.appspot.com",
+          messagingSenderId: "1032741693894",
+          appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+          measurementId: "G-KXG18481EL"
+      };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      </script>
+    <script>
+      function ordersent(){
+        var lorderfood = sessionStorage.getItem("orderfood");
+        var lstudent = localStorage.getItem("currentuse");
+        var loption = document.getElementById('option').value;
+        var lplate = document.getElementById('plate').value;
+        console.log(loption)
+
+        var firebaseRef = firebase.database().ref(currentshop);
+        firebaseRef.push({
+          food: lorderfood,
+          options: loption,
+          student: lstudent,
+          numplate: lplate
+    }).then(function(){
+      if(confirm('สั่งอาหารเรียบร้อยแล้ว ต้องการสั่งอาหารของร้านนี้เพิ่มอีกหรือไม่')){
+        if (currentshop == 'NoodleNation'){
+          window.location.replace("NoodleNation/NoodleNation.html");}
+        else if (currentshop == 'DessertEagle'){
+          window.location.replace("Dessert Eagle/Dessert Eagle.html");}
+        else if (currentshop == 'TamTeeSang'){
+          window.location.replace("TamTeeSang/TamTeeSang.html");}
+        }else{
+          window.location.replace("ChoosePage.html");
+        }
+    });
+        
+      }
+    </script>
 </body>
 </html>

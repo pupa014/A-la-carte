@@ -3,10 +3,14 @@ document.getElementById("idLogin").onclick = function() {
 
         var email = document.getElementById('idUser').value;
         var password = document.getElementById('idPassword').value;
+        var shopid = (email == "food" || email == "noodle" || email == "dessert");
 
         firebase.auth().signInWithEmailAndPassword(email + '@it.kmitl.ac.th', password)
         .then(function(){
-                window.location.replace("ChoosePage.html");
+                if (shopid){
+                  window.location.replace("RecieveOrderNoodleNation.html");
+                }else{
+                window.location.replace("ChoosePage.html");}
                 console.log('success');
                 localStorage.setItem("currentuse", email);
             }).catch(function(error) {
