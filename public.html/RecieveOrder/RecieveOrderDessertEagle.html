@@ -40,6 +40,9 @@
     <p id='ordernow'></p>
     <input type="number" id='orderincrease'>
     <button onclick='updatestock()'>เปลี่ยนจำนวน Order</button>
+    ถึงลูกค้า:
+    <textarea class="form-control" rows="10" cols="20" id="announce" placeholder="วันนี้เปิดรับเวลา วัตถุดิบ ฯลฯ"></textarea>
+    <button onclick='updateannounce()'>ประกาศ</button>
 </div>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
@@ -79,16 +82,22 @@
         dataRef.orderByChild("student").equalTo(student).on('value', function(snapshot){
         snapshot.forEach(function(childSnapshot) {
           let key = childSnapshot.key;
-          dataRef.child(key).remove(); 
+          dataRef.child(key).remove();
             });
+        location.reload();
     });
 }
       function updatestock(){
               var firebaseRef = firebase.database().ref('limitedorder')
               var update = document.getElementById('orderincrease').value;
-              firebaseRef.update({noodleNation: parseInt(update)})
+              firebaseRef.update({DessertEagle: parseInt(update)})
               location.reload();
             }
+      function updateannounce(){
+        var lannounce = document.getElementById('announce').value;
+        var firebaseRef = firebase.database().ref('limitedorder/announced')
+        firebaseRef.update({DessertEagle: lannounce})
+      }
 
       dataRef.limitToLast(5).on('child_added', function(childSnapshot) {
       let item = childSnapshot.val()
