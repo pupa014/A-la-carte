@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recieve Order 3</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+<body>
+	<div class="container mt-3">
+	  <table class="table table-dark table-hover table-striped">
+	    <thead>
+	      <tr>
+          <th><center>Dessert Eagle</center></th>
+	      </tr>
+	  </table>
+	</div>
+
+<div class="container">
+  <h2>Recieve Order</h2>
+    <div class="form-group">
+  
+    </div>
+    <div class="form-group">
+      <label>Your Order:</label>
+        <table class="table table-dark table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Student's ID</th>
+                <th>Plate</th>
+                <th>Order's List</th>
+                <th>Options</th>
+                <th>ทำเสร็จแล้ว</th>
+            </tr>
+            </thead>
+            <tbody id="orderlist" class = "table=success">
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+          authDomain: "a-la-carte-767c1.firebaseapp.com",
+          databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+          projectId: "a-la-carte-767c1",
+          storageBucket: "a-la-carte-767c1.appspot.com",
+          messagingSenderId: "1032741693894",
+          appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+          measurementId: "G-KXG18481EL"
+      };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      </script>
+    <script>
+
+      var myFirebase = firebase.database();
+      var dataRef = myFirebase.ref('/TamTeeSang');
+
+      function deleteRow(elem, student) {
+
+        var myFirebase = firebase.database();
+        var dataRef = myFirebase.ref('/TamTeeSang');
+        dataRef.orderByChild("student").equalTo(student).on('value', function(snapshot){
+        snapshot.forEach(function(childSnapshot) {
+          let key = childSnapshot.key;
+          dataRef.child(key).remove(); 
+            });
+    });
+}
+
+      dataRef.limitToLast(5).on('child_added', function(childSnapshot) {
+      let item = childSnapshot.val()
+      document.getElementById('orderlist').innerHTML += "<tr><td>" + item.student + "</td><td>" + item.numplate + "</td><td>"+ item.food +"</td><td>" + item.options + "</td><td>" + "<button onclick=deleteRow(this,'"+item.student+"')>"+"ทำเสร็จแล้ว"+"</button></td></tr>"
+});
+    </script>
+
+</body>
+</html>
