@@ -37,6 +37,9 @@
             </tbody>
         </table>
     </div>
+    <p id='ordernow'></p>
+    <input type="number" id='orderincrease'>
+    <button onclick='updatestock()'>เปลี่ยนจำนวน Order</button>
 </div>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
@@ -80,6 +83,11 @@
             });
     });
 }
+      function updatestock(){
+        var firebaseRef = firebase.database().ref('limitedorder')
+        var update = document.getElementById('orderincrease').value;
+        firebaseRef.update({noodleNation: parseInt(update)})
+      }
 
       dataRef.limitToLast(5).on('child_added', function(childSnapshot) {
       let item = childSnapshot.val()

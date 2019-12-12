@@ -1,5 +1,10 @@
 function orderget(order, shop) {
-        sessionStorage.setItem("orderfood", order);
+    var lingre = document.getElementById('ingre').value;
+    console.log(lingre)
+    if (lingre == null){
+        var lingre = '';
+    }
+        sessionStorage.setItem("orderfood", order+lingre);
         sessionStorage.setItem("currentshop", shop);
         window.location.replace("../SendOrder.html");
     }
