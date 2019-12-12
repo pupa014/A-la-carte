@@ -71,6 +71,9 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
       </script>
+      <script>
+        
+      </script>
     <script>
       function ordersent(){
         var lorderfood = sessionStorage.getItem("orderfood");
@@ -79,6 +82,13 @@
         var lplate = document.getElementById('plate').value;
         console.log(loption)
 
+        firebase.database().ref("limitedorder/" + currentshop).once('value').then((dataSnapshot) => {
+      let desiredValue = dataSnapshot.val();
+      console.log(desiredValue)
+      if (desiredValue-lplate < 0){
+        alert("ท่านสั่งมากเกิน ออเดอร์เหลืออีก " + desiredValue)
+      }
+      else{
         var firebaseRef = firebase.database().ref(currentshop);
         firebaseRef.push({
           food: lorderfood,
@@ -86,8 +96,16 @@
           student: lstudent,
           numplate: lplate
     }).then(function(){
+      var orderRef = firebase.database().ref('limitedorder')
+      console.log(lplate)
+      if (currentshop == 'noodleNation'){
+          orderRef.update({noodleNation: desiredValue-parseInt(lplate)})}
+        else if (currentshop == 'DessertEagle'){
+          orderRef.update({DessertEagle: desiredValue-parseInt(lplate)})}
+        else if (currentshop == 'TamTeeSang'){
+          orderRef.update({TamTeeSang: desiredValue-parseInt(lplate)})}
       if(confirm('สั่งอาหารเรียบร้อยแล้ว ต้องการสั่งอาหารของร้านนี้เพิ่มอีกหรือไม่')){
-        if (currentshop == 'NoodleNation'){
+        if (currentshop == 'noodleNation'){
           window.location.replace("NoodleNation/NoodleNation.html");}
         else if (currentshop == 'DessertEagle'){
           window.location.replace("Dessert Eagle/Dessert Eagle.html");}
@@ -97,8 +115,10 @@
           window.location.replace("ChoosePage.html");
         }
     });
-        
-      }
+      }})
+    .catch((error) => {
+      console.log("An error occurred:", error);
+    })}
     </script>
 </body>
 </html>

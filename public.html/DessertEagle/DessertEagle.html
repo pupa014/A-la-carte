@@ -12,6 +12,32 @@
 
 <body style="background-image: url(https://images.unsplash.com/photo-1490367605959-06955305859b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80); background-size: cover;">
     <table width=15% cellpadding="4" cellspacing="1" style="border:1px solid #dcdc77;"><tr><td bgcolor="ECACAC"style="border-style:solid;border-width:4px;border-color:#9B1C1C;"><center><b><a href="../ChoosePage.html">Go back</a></b></center></td></tr></table>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-analytics.js"></script>
+     <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+          apiKey: "AIzaSyDh1s-WsKncT7pmuslHYgjamUtjx-F7Xqg",
+          authDomain: "a-la-carte-767c1.firebaseapp.com",
+          databaseURL: "https://a-la-carte-767c1.firebaseio.com",
+          projectId: "a-la-carte-767c1",
+          storageBucket: "a-la-carte-767c1.appspot.com",
+          messagingSenderId: "1032741693894",
+          appId: "1:1032741693894:web:fc9c5e1343033aebfe6ac7",
+          measurementId: "G-KXG18481EL"
+      };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+      </script>
     <script src="../order.js"></script>
     <div class="container">
         <div class="row">

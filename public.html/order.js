@@ -1,4 +1,19 @@
-function orderget(order, shop) {
+function orderget(order, shop){
+    firebase.database().ref("limitedorder/"+shop).once('value').then((dataSnapshot) => {
+      let desiredValue = dataSnapshot.val();
+      console.log(desiredValue)
+      if (desiredValue == 0){
+        alert("ปิดรับออเดอร์แล้ว")
+      }
+      else{
+        ordersend(order, shop)
+      }
+    
+}).catch((error) => {
+      console.log("An error occurred:", error);
+    })}
+
+function ordersend(order, shop) {
     var lingre = document.getElementById('ingre').value;
     console.log(lingre)
     if (lingre == null){

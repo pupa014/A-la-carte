@@ -70,12 +70,12 @@
     <script>
 
       var myFirebase = firebase.database();
-      var dataRef = myFirebase.ref('/NoodleNation');
+      var dataRef = myFirebase.ref('/noodleNation');
 
       function deleteRow(elem, student) {
 
         var myFirebase = firebase.database();
-        var dataRef = myFirebase.ref('/NoodleNation');
+        var dataRef = myFirebase.ref('/noodleNation');
         dataRef.orderByChild("student").equalTo(student).on('value', function(snapshot){
         snapshot.forEach(function(childSnapshot) {
           let key = childSnapshot.key;
@@ -87,6 +87,7 @@
         var firebaseRef = firebase.database().ref('limitedorder')
         var update = document.getElementById('orderincrease').value;
         firebaseRef.update({noodleNation: parseInt(update)})
+        location.reload();
       }
 
       dataRef.limitToLast(5).on('child_added', function(childSnapshot) {
@@ -94,6 +95,17 @@
       document.getElementById('orderlist').innerHTML += "<tr><td>" + item.student + "</td><td>" + item.numplate + "</td><td>"+ item.food +"</td><td>" + item.options + "</td><td>" + "<button onclick=deleteRow(this,'"+item.student+"')>"+"ทำเสร็จแล้ว"+"</button></td></tr>"
 });
     </script>
+    <script>
+      firebase.database().ref("limitedorder/noodleNation").once('value').then((dataSnapshot) => {
+      let desiredValue = dataSnapshot.val();
+      document.getElementById('ordernow').innerHTML = "ตอนนี้มีออเดอร์ว่างอยู่: " + desiredValue
+      console.log("Desired value: ", desiredValue);
+    })
+    .catch((error) => {
+      console.log("An error occurred:", error);
+    })
+    </script>
+
 
 </body>
 </html>
