@@ -8,7 +8,14 @@ document.getElementById("idLogin").onclick = function() {
         firebase.auth().signInWithEmailAndPassword(email + '@it.kmitl.ac.th', password)
         .then(function(){
                 if (shopid){
-                  window.location.replace("RecieveOrderNoodleNation.html");
+                  if (email == "noodle"){
+                  window.location.replace("RecieveOrder/RecieveOrderNoodleNation.html");}
+                  else if (email == "dessert"){
+                    window.location.replace("RecieveOrder/RecieveOrderDessertEagle");
+                  }
+                  else if (email == "food"){
+                    window.location.replace("RecieveOrder/RecieveOrderTamTeeSang.html");
+                  }
                 }else{
                 window.location.replace("ChoosePage.html");}
                 console.log('success');
