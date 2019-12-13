@@ -11,7 +11,7 @@ document.getElementById("idLogin").onclick = function() {
                   if (email == "noodle"){
                   window.location.replace("RecieveOrder/RecieveOrderNoodleNation.html");}
                   else if (email == "dessert"){
-                    window.location.replace("RecieveOrder/RecieveOrderDessertEagle");
+                    window.location.replace("RecieveOrder/RecieveOrderDessertEagle.html");
                   }
                   else if (email == "food"){
                     window.location.replace("RecieveOrder/RecieveOrderTamTeeSang.html");
