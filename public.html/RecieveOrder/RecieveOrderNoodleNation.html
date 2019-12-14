@@ -6,7 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 </head>
-<body>
+<body style="background-image: url(https://seefah.com/wp-content/uploads/2016/08/seefah_bigmenu_540-1100x733.jpg); background-size: cover;">
 	<div class="container mt-3">
 	  <table class="table table-dark table-hover table-striped">
 	    <thead>
@@ -19,10 +19,10 @@
 <div class="container">
   <h2>Recieve Order</h2>
     <div class="form-group">
-  
+
     </div>
     <div class="form-group">
-      <label>Your Order:</label>
+      <label><b>Your Order:</b></label>
         <table class="table table-dark table-striped">
             <thead class="thead-dark">
             <tr>
@@ -82,7 +82,7 @@
         dataRef.orderByChild("student").equalTo(student).on('value', function(snapshot){
         snapshot.forEach(function(childSnapshot) {
           let key = childSnapshot.key;
-          dataRef.child(key).remove(); 
+          dataRef.child(key).remove();
             });
         location.reload();
     });
