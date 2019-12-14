@@ -87,6 +87,8 @@
       console.log(desiredValue)
       if (desiredValue-lplate < 0){
         alert("ท่านสั่งมากเกิน ออเดอร์เหลืออีก " + desiredValue)
+      }else if (lplate > 5){
+        alert("ท่านสั่งมากเกิน สั่งได้ครั้งละสูงสุด 5 จาน")
       }
       else{
         var firebaseRef = firebase.database().ref(currentshop);
