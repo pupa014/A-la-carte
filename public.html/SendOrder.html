@@ -86,6 +86,9 @@
       if (desiredValue-lplate < 0){
         alert("ท่านสั่งมากเกิน ออเดอร์เหลืออีก " + desiredValue)
       }
+      else if (lplate > 5){
+        alert("ท่านสั่งมากเกิน สั่งได้สูงสุด 5 รายการต่อ 1 ครั้ง")
+      }
       else{
         var firebaseRef = firebase.database().ref(currentshop);
         firebaseRef.push({
